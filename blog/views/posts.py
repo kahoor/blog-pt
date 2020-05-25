@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Post
+from blog.models import Post
 from django.views import generic
 from django.shortcuts import get_object_or_404
 # Create your views here.

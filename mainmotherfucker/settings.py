@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS.append('blog')
+INSTALLED_APPS.append('accounts')
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
