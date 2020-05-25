@@ -1,0 +1,18 @@
+{% extends 'shared/site.html' %} 
+{% block title %} Posts {% endblock %}
+{% block body %}
+<div class="container">
+
+    <div class="starter-template">
+        {% for post in post_list %}
+            <div class="panel">
+                <div class="panel-heading">
+                    <h1><a href="{% url 'blog:postdetail' post.id %}">{{ post.title }}</a></h1>
+                    <div> Created {{ post.published }} by <a href="{% url 'blog:userposts' post.user.username %}">{{post.user.username}}</a></div>
+                </div>
+                <h3 class="panel-body"> {{ post.summary|urlizetrunc:25 }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

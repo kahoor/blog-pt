@@ -1,0 +1,21 @@
+{% extends 'shared/site.html' %} 
+{% block title %} Blog {% endblock %}
+{% block body %}
+    <div class="container">
+
+        <!-- Post -->
+        <div class="jumbotron">
+
+            <!-- Post title -->
+            <h1>{{ post.title }}</h1>
+
+            <div> Created {{ post.published }} by <a href="{% url 'blog:userposts' post.user.username %}">{{post.user.username}}</a></div>
+
+            <!-- Post body -->
+            <h3>{{ post.body|urlizetrunc:25 }}</h3>
+
+        </div>
+
+        
+    </div>
+{% endblock %}

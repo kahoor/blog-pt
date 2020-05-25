@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'mainmotherfucker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog',
+        'NAME': 'mysite',
         'PASSWORD': '1234',
         'USER': 'postgres',
         'PORT': 5432
