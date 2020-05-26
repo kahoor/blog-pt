@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS.append('blog')
 INSTALLED_APPS.append('accounts')
+INSTALLED_APPS.append('records')
 
 
 MIDDLEWARE = [
