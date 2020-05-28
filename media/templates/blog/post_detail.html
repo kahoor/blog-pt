@@ -1,4 +1,7 @@
 {% extends 'shared/base.html' %} 
+{% load markdown_deux_tags %}
+{% load crispy_forms_tags %}
+
 {% block title %} Blog {% endblock %}
 {% block content %}
     <div class="container">
@@ -12,7 +15,7 @@
             <div> Created {{ post.published }} by <a href="{% url 'blog:userposts' post.user.username %}">{{post.user.username}}</a></div>
 
             <!-- Post body -->
-            <h3>{{ post.body|urlizetrunc:25 }}</h3>
+            <h3>{{ post.body|markdown|urlizetrunc:25 }}</h3>
 
         </div>
 

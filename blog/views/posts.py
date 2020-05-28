@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from blog.models import Post
 from django.views import generic
-from django.shortcuts import get_object_or_404
+from django.http import  Http404
 # Create your views here.
 
 class PostListView(generic.ListView):
@@ -14,11 +14,14 @@ class PostListView(generic.ListView):
     def get_queryset(self):
         queryset = super(PostListView, self).get_queryset()
         # for the time request has username in it
-        try:
-            user = User.objects.get(username=self.kwargs['username'])
-            queryset = Post.objects.filter(user=user)
+        if 'username' in self.kwargs:
+            try:
+                user = User.objects.get(username=self.kwargs['username'])
+                queryset = Post.objects.filter(user=user)
+            except:
+                raise Http404("username {} does not exist".format(self.kwargs['username']))
         # for times all the posts are requerd
-        except:
+        else:
             queryset = Post.objects.all()
         queryset = queryset.filter(status='published').order_by('-published')
         return queryset

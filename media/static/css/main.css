@@ -1,6 +1,11 @@
 h1 {
-    color: #0000FF;
+    color: rgb(84, 88, 88);
 }
+
+.wmd-preview{
+    display: none;
+}
+
 
 h2 {
     color: #FF0000;

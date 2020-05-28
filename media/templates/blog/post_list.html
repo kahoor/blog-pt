@@ -7,7 +7,7 @@
         {% for post in post_list %}
             <div class="panel">
                 <div class="panel-heading">
-                    <h1><a href="{% url 'blog:postdetail' post.id %}">{{ post.title }}</a></h1>
+                    <h1><a href="{% url 'blog:postdetail' post.user.username post.slug %}">{{ post.title }}</a></h1>
                     <div> Created {{ post.published }} by <a href="{% url 'blog:userposts' post.user.username %}">{{post.user.username}}</a></div>
                 </div>
                 <h3 class="panel-body"> {{ post.summary|urlizetrunc:25 }}</h3>

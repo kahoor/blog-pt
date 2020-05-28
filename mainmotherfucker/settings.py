@@ -39,9 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# local apps installing
 INSTALLED_APPS.append('blog')
 INSTALLED_APPS.append('accounts')
 INSTALLED_APPS.append('records')
+
+# third party apps installing
+INSTALLED_APPS.append('markdown_deux')
+INSTALLED_APPS.append('pagedown')
+INSTALLED_APPS.append('crispy_forms')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
 MIDDLEWARE = [
@@ -135,4 +143,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'media/static/'),
 )
 
-STATIC_ROOTS = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
