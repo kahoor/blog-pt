@@ -10,6 +10,10 @@ from django.urls import reverse
 def get_sentinel_user():
     return get_user_model().objects.get_or_create(username='deleted')[0]
 
+
+    
+
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -24,6 +28,7 @@ class Post(models.Model):
     published = models.DateTimeField(auto_now=False, auto_now_add=False)
     created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='draft')
+    read_time = models.IntegerField(default=0)
 
     user = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user))
 
@@ -35,7 +40,14 @@ class Post(models.Model):
     
 
     def save(self, *args, **kwargs):
+        self.set_slug()
+        self.set_read_time()
         
+        super(Post, self).save(*args, **kwargs) # Call the real save() method
+
+
+    # my functions
+    def set_slug(self):
         slug = slugify(self.title)
         i=1
         while True:
@@ -50,4 +62,8 @@ class Post(models.Model):
             except:
                 self.slug = slug
                 break
-        super(Post, self).save(*args, **kwargs) # Call the real save() method
+
+    def set_read_time(self):
+        count_words = self.body.count(' ')
+        self.read_time = int(count_words/120)
+        

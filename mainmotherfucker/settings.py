@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 INSTALLED_APPS.append('blog')
 INSTALLED_APPS.append('accounts')
 INSTALLED_APPS.append('records')
+INSTALLED_APPS.append('comment')
+INSTALLED_APPS.append('bucketlist')
 
 # third party apps installing
 INSTALLED_APPS.append('markdown_deux')

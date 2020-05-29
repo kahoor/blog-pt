@@ -11,11 +11,12 @@
 
             <!-- Post title -->
             <h1>{{ post.title }}</h1>
+            <h3>Read time: {{ post.read_time }} minutes</h3>
 
             <div> Created {{ post.published }} by <a href="{% url 'blog:userposts' post.user.username %}">{{post.user.username}}</a></div>
 
             <!-- Post body -->
-            <h3>{{ post.body|markdown|urlizetrunc:25 }}</h3>
+            <h2>{{ post.body|markdown|urlizetrunc:25 }}</h2>
 
         </div>
 

@@ -6,7 +6,7 @@ from .models import Post
 class PostForm(forms.ModelForm):
     """PostForm definition."""
     body = forms.CharField(widget=PagedownWidget())
-    summary = forms.CharField(widget=PagedownWidget())
+    summary = forms.CharField(widget=PagedownWidget(), max_length=260)
     published = forms.DateField(widget=forms.SelectDateWidget)
 
     class Meta:
