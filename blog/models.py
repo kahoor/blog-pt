@@ -21,8 +21,8 @@ class Post(models.Model):
     )
 
     title = models.CharField(max_length=150)
-    slug = models.SlugField(unique=True)
-    summary = models.TextField(max_length=260)
+    slug = models.SlugField(unique=True, allow_unicode=True)
+    summary = models.TextField()
     body = models.TextField()
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     published = models.DateTimeField(auto_now=False, auto_now_add=False)
@@ -48,7 +48,7 @@ class Post(models.Model):
 
     # my functions
     def set_slug(self):
-        slug = slugify(self.title)
+        slug = self.title.replace(' ', '-')
         i=1
         while True:
             i+=1
@@ -65,5 +65,5 @@ class Post(models.Model):
 
     def set_read_time(self):
         count_words = self.body.count(' ')
-        self.read_time = int(count_words/120)
+        self.read_time = int(count_words/120)+1
         

@@ -16,7 +16,7 @@
             <div> Created {{ post.published }} by <a href="{% url 'blog:userposts' post.user.username %}">{{post.user.username}}</a></div>
 
             <!-- Post body -->
-            <h2>{{ post.body|markdown|urlizetrunc:25 }}</h2>
+            <h2 dir = "rtl">{{ post.body|markdown|urlizetrunc:25 }}</h2>
 
         </div>
 
