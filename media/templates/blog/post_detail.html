@@ -20,6 +20,23 @@
 
         </div>
 
-        
+        <div>
+
+            <p class='lead'>Comments</p>
+            <form method="POST" action="."> {% csrf_token %}
+                {{ form|crispy }}
+                <input type='submit' value='Post comment' class='btn btn-default'>
+            </form>
+            
+            {% for comment in comments %}
+
+                <blockquote>
+                    <p>{{ comment.body }}</p>
+                    <footer>via {{ comment.user }} | {{ comment.created|timesince }} ago | {% if comment.children.count > 0 %}{{ comment.children.count }} Comment{% if comment.children.count > 1 %}s{% endif %} | {% endif %} <a class='comment-reply-btn' href='#'>Reply</a> | <a class='' href='{{ comment.get_absolute_url }}'>Thread</a></footer>
+                </blockquote>
+
+                <hr/>
+            {% endfor %}
+    
     </div>
 {% endblock %}
