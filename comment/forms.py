@@ -12,6 +12,3 @@ class CommentForm(forms.ModelForm):
             'body',
             ]
         exclude = ('admitted',)
-        widgets = {
-            'article': forms.HiddenInput()
-        }

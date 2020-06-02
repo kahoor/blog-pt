@@ -25,7 +25,6 @@ class Comment(models.Model):
     def save(self, *args, **kwargs):
         if not self.user.username=="guest":
             self.active = True
-            self.email = self.user.email
         super(Comment, self).save()
 
 

@@ -47,9 +47,23 @@ class PostDetailView(generic.edit.FormMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         context['comments'] = self.object.comment_set.filter(active=True)
-        context['form'] = CommentForm(initial={
-            'post': self.object
-        })
+
+        # if user was loged in then email is chosen.
+        # TODO: move this part to comment.forms
+        if self.request.user.is_authenticated:
+            commentform = CommentForm(initial={
+                'post': self.object,
+                'email': self.request.user.email
+            })
+            commentform.fields['email'].widget.attrs["readonly"] = True
+        else:
+            commentform = CommentForm(initial={
+                'post': self.object
+            })
+
+            
+
+        context['form'] = commentform
         return context
     
     def post(self, request, *args, **kwargs):
@@ -57,11 +71,11 @@ class PostDetailView(generic.edit.FormMixin, generic.DetailView):
         form_class = self.form_class
         form = self.get_form()
 
-        
         if form.is_valid():
             return self.form_valid(form)
     
         else:
+            print(form)
             return self.form_invalid(form)
 
     def form_valid(self, form):
